@@ -1,33 +1,11 @@
 package main.edu.course1.week2;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import main.edu.course1.Utils;
+
 
 public class Inversions {
     public static final String readFile = ".//src/main/edu/course1/week2/IntegerArray.txt";
-    public  static int[] readInputFile (String file){
-        Scanner fileOut = null;
-        int[] numbers = new int[100000];
-        try {
-            fileOut = new Scanner(new FileReader(new File(readFile)));
-            int i= 0;
-            while (fileOut.hasNext()) {
-                numbers[i]= fileOut.nextInt();
-                i++;
-            }
-        }catch (FileNotFoundException fileNotFoundException) {
-            System.out.println(readFile+ " cannot find specified file");
-        } finally {
-            if (fileOut != null)
-                fileOut.close();
-        }
-        return numbers;
-    }
+
     private static long sort(int[] array, int[] sortedArray, int left, int right ){
         int size = array.length;
         int mid ;
@@ -68,7 +46,7 @@ public class Inversions {
         return inversionCount;
     }
     public static void main(String[] args) {
-        int[] array = readInputFile(readFile);
+        int[] array = Utils.readInputFile(readFile, 100000);
 
         int[] sortedArray = new int[array.length];
         System.out.println("Number of inversions are "
