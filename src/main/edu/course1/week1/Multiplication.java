@@ -7,33 +7,28 @@ public class Multiplication {
     {
         String num1str = String.format("%.0f", num1);
         String num2str = String.format("%.0f", num2)  ;
-        int maxLength = Math.max(num1str.length(), num2str.length());
 
-        if (num1str.length()==2 || num2str.length()==2)
+        int maxLength = Math.max(String.valueOf(num1).length(), String.valueOf(num2).length());
+        int num1Size = String.valueOf(num1).length();
+        int num2Size = String.valueOf(num2).length();
+        int halfSize = maxLength / 2;
+        int splitNum1 = num1Size - halfSize;
+        int splitNum2 = num2Size - halfSize;
+        if ( num1.compareTo(BigDecimal.TEN) == -1 || num2.compareTo(BigDecimal.TEN)==-1)
             return num1.multiply(num2);
-        int splitPosition = (maxLength/2 ) + (maxLength%2);
-//        double a = Double.parseDouble(num1str.substring(0, splitPosition));
-//        double b = Double.parseDouble(num1str.substring(splitPosition));
-//        double c = Double.parseDouble(num2str.substring(0, splitPosition));
-//        double d = Double.parseDouble(num2str.substring(splitPosition));
 
-        BigDecimal a = new BigDecimal(num1str.substring(0, splitPosition));
-        BigDecimal b = new BigDecimal(num1str.substring(splitPosition));
-        BigDecimal c = new BigDecimal(num2str.substring(0, splitPosition));
-        BigDecimal d = new BigDecimal(num2str.substring(splitPosition));
-
-//        BigDecimal a = num1.divide(BigDecimal.valueOf(10).pow(splitPosition));
-//        BigDecimal b = num1.remainder(BigDecimal.valueOf(10).pow(splitPosition));
-//        BigDecimal c = num2.divide(BigDecimal.valueOf(10).pow(splitPosition));
-//        BigDecimal d = num2.remainder(BigDecimal.valueOf(10).pow(splitPosition));
+        BigDecimal a = new BigDecimal(num1str.substring(0, splitNum1));
+        BigDecimal b = new BigDecimal(num1str.substring(splitNum1));
+        BigDecimal c = new BigDecimal(num2str.substring(0, splitNum2));
+        BigDecimal d = new BigDecimal(num2str.substring(splitNum2));
 
         BigDecimal step1 = karatsuba(a, c);
         BigDecimal step2 = karatsuba(b, d);
         BigDecimal step3 = karatsuba(a.add(b), c.add(d));
         BigDecimal step4 = step3.subtract(step1).subtract(step2);
 
-        BigDecimal step5 = (BigDecimal.valueOf(10).pow(splitPosition)).multiply(step4);
-        BigDecimal step6 = (BigDecimal.valueOf(10).pow(splitPosition*2)).multiply(step1);
+        BigDecimal step5 = (BigDecimal.valueOf(10).pow(halfSize)).multiply(step4);
+        BigDecimal step6 = step1.multiply(new BigDecimal("10").pow(halfSize*2));
 
         return step2
                 .add(step5)
