@@ -4,7 +4,6 @@ import main.edu.course1.Utils;
 
 public class QuickSortGeneral {
     public static final String readFile = ".//src/main/edu/course1/week3/QuickSort.txt";
-    private static int comparisons =0;
     public static int quickSort(int[] array, int low, int high, String type) {
         if (low < high) {
             int partitionValue= -1;
@@ -20,8 +19,6 @@ public class QuickSortGeneral {
                     break;
 
             }
-            comparisons += (partitionValue - low);
-            comparisons += (high - partitionValue);
             int a1 = quickSort(array, low, partitionValue - 1, type);
             int a2 = quickSort(array, partitionValue + 1, high, type);
             return a1 + a2 + high - low;
@@ -54,13 +51,11 @@ public class QuickSortGeneral {
 //        System.out.println();
 //        System.out.println(comparisons);
         int comparisonFirstPivot = quickSort(array1, 0, array1.length-1,"first");
-        comparisons = 0;
         int comparisonLastPivot = quickSort(array2, 0, array2.length-1, "last");
-        comparisons = 0;
         int comparisonMiddlePivot = quickSort(array3, 0, array3.length-1, "middle");
 
-        System.out.println("First: "+comparisons+"   "+comparisonFirstPivot);
-        System.out.println("Last: "+comparisons+"   "+comparisonLastPivot);
-        System.out.println("Middle: "+comparisons+"   "+comparisonMiddlePivot);
+        System.out.println("First:  "+comparisonFirstPivot);
+        System.out.println("Last:   "+comparisonLastPivot);
+        System.out.println("Middle: "+comparisonMiddlePivot);
     }
 }
