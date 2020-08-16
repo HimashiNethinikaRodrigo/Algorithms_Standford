@@ -15,5 +15,3 @@ public class QuickSortFirstElementPivot {
     }
 
 }
-
-// Ans: 162085

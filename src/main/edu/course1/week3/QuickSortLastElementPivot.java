@@ -8,5 +8,3 @@ public class QuickSortLastElementPivot {
 
 
 }
-
-//Ans: 164123
