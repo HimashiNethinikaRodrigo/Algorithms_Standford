@@ -24,4 +24,24 @@ public class Utils {
         }
         return numbers;
     }
+
+    public  static String[] readInputFileWithMultipleColumns (String file, int size){
+        Scanner fileOut = null;
+        String[] lines = new String[size];
+        try {
+            fileOut = new Scanner(new FileReader(new File(file)));
+            int i= 0;
+            while (fileOut.hasNext()) {
+                lines[i]= fileOut.nextLine();
+                System.out.println(lines[i]);
+                i++;
+            }
+        }catch (FileNotFoundException fileNotFoundException) {
+            System.out.println(file+ " cannot find specified file");
+        } finally {
+            if (fileOut != null)
+                fileOut.close();
+        }
+        return lines;
+    }
 }
