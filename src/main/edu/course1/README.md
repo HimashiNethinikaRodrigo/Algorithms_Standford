@@ -15,3 +15,5 @@ The primary topics in this part of the specialization are: asymptotic ("Big-oh")
 * Divide And Conquer Algorithms
 
 [Certificate Reference](https://coursera.org/share/625cb63de8a8c078d8272bfb2a66ca54)
+
+<img src="https://github.com/HimashiNethinikaRodrigo/Algorithms_Standford/blob/master/src/main/edu/course1/certificate.JPG?raw=true" width=700/>
